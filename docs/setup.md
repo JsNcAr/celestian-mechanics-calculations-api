@@ -20,7 +20,7 @@ This guide covers how to set up the development environment, configure the appli
 
 2.  **Install dependencies & create venv**:
     ```bash
-    poetry install
+    poetry install --extras dev
     # activate an interactive shell (optional)
     poetry shell
     # run commands without activating a shell
@@ -62,7 +62,7 @@ The application uses **pydantic-settings** to manage configuration. Settings can
 | `DEBUG` | Enable debug mode (auto-reload) | `False` |
 | `HOST` | Bind address for the server | "0.0.0.0" |
 | `PORT` | Bind port for the server | `8000` |
-| `CORS_ORIGINS` | Comma-separated list of allowed origins | (Check `app/core/config.py`) |
+| `CORS_ORIGINS` | Comma-separated list _or_ JSON array of allowed origins | (Check `app/core/config.py`) |
 | `API_V1_PREFIX` | Prefix for V1 API routes | (Check `app/core/config.py`) |
 
 To customize these values locally, create a `.env` file:
@@ -71,6 +71,12 @@ DEBUG=True
 PORT=8080
 CORS_ORIGINS=["http://localhost:3000"]
 ```
+
+The application reads environment variables from a `.env` file (using
+`python-dotenv`) and `pydantic-settings` will also consult `.env` when
+building `Settings`. Place development overrides in a `.env` file — the
+project includes `.env.example` as a template that you can copy to
+`.env` locally.
 
 ## Running the Server
 
