@@ -46,7 +46,7 @@ designed for consumption by TypeScript frontends.
 curl -sSL https://install.python-poetry.org | python3 -
 
 # 2. Install project dependencies and create the virtual environment
-poetry install
+poetry install --extras dev
 
 # 3. (optional) spawn a shell that uses the Poetry venv
 poetry shell
