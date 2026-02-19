@@ -1,3 +1,11 @@
+"""
+Application factory for the Celestial Mechanics Calculations API.
+
+This module creates and configures the FastAPI application instance, registers
+middleware (CORS), mounts the versioned API routers, and exposes a root
+endpoint that returns a welcome message with links to the interactive docs.
+"""
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
