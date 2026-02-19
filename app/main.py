@@ -9,7 +9,7 @@ endpoint that returns a welcome message with links to the interactive docs.
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.v1.router import router as v1_router
+from app.api.v1.routes import router as v1_router
 from app.core.config import get_settings
 from app.models.responses import RootResponse
 

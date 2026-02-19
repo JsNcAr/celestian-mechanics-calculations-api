@@ -7,7 +7,7 @@ Welcome to the documentation for the Celestial Mechanics Calculations API. This 
 - **FastAPI Framework**: High performance, easy to use, and ready for production.
 - **Modular Architecture**: Clean separation between API routes, business logic, and data models.
 - **Type Safety**: Fully typed codebase using Python type hints and Pydantic models.
-- **Extensible**: Designed to easily add new calculation modules and endpoints.
+- **Extensible**: Designed to easily add new calculation modules and `routers` (one router per service/domain).
 - **Documentation**: Automatic interactive API documentation via Swagger UI and ReDoc.
 - **Poetry (recommended)**: `poetry` is the preferred dependency & virtualenv manager for development.
 

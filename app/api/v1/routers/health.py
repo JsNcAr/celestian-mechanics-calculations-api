@@ -1,3 +1,8 @@
+"""Health router (migrated from `endpoints`).
+
+Defines the `/health` endpoint and registers it on an `APIRouter`.
+"""
+
 from fastapi import APIRouter
 
 from app.core.config import get_settings
