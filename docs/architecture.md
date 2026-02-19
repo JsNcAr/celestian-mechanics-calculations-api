@@ -7,9 +7,9 @@ The project follows a modular, layered architecture typical of scalable FastAPI 
 ```
 app/
 ├── api/                # API Routing Layer
-│   └── v1/             # Version 1 Endpoints
-│       ├── endpoints/  # Individual route handlers
-│       └── router.py   # Aggregates all v1 endpoints
+│   └── v1/             # Version 1 routers
+│       ├── routers/    # One router per service/domain (health, orbital, ...)
+│       └── routes.py   # Aggregates all v1 routers
 ├── core/               # Application Configuration
 │   └── config.py       # Pydantic Settings & Environment variables
 ├── models/             # Data Models
@@ -20,6 +20,11 @@ app/
 │   └── math_helpers.py # Helper functions (unit conversion, normalization)
 └── main.py             # Application Entry Point
 ```
+
+Note: this project uses a `routers/` package (one `APIRouter` per domain/service)
+instead of a flat `endpoints/` package. This keeps route definitions grouped by
+functional area (e.g. `health`, `orbital`, `coordinate`) and improves
+discoverability and maintainability as the API surface grows.
 
 ## Key Components
 
@@ -44,7 +49,7 @@ General-purpose helper functions that can be reused across services.
 ## Data Flow
 
 1.  **Request**: Enters via `app/main.py`.
-2.  **Routing**: Dispatched to the appropriate handler in `app/api/v1/endpoints/`.
+2.  **Routing**: Dispatched to the appropriate handler in `app/api/v1/routers/`.
 3.  **Validation**: FastAPI validates request data against Pydantic models.
 4.  **Service Call**: The endpoint calls a function in `app/services/`.
 5.  **Response**: The result is wrapped in a Pydantic response model and returned as JSON.

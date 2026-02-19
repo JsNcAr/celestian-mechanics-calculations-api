@@ -15,10 +15,10 @@ designed for consumption by TypeScript frontends.
 │   │   └── config.py                  # Settings (pydantic-settings / .env)
 │   ├── api/
 │   │   └── v1/
-│   │       ├── router.py              # Aggregate v1 router
-│   │       └── endpoints/
+│   │       ├── routes.py              # Aggregate v1 router
+│   │       └── routers/
 │   │           └── health.py          # GET /api/v1/health
-│   ├── models/
+│   ├── models:
 │   │   └── responses.py               # Shared Pydantic response schemas
 │   ├── services/
 │   │   └── calculations/

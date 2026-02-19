@@ -39,7 +39,7 @@ To add a new calculation features (e.g., Orbital Velocity):
 
 2.  **Define Models**: Add Request/Response Pydantic models in `app/models/` if needed.
 
-3.  **Create Endpoint**: Create a new file `app/api/v1/endpoints/orbital.py`.
+3.  **Create Router**: Create a new file `app/api/v1/routers/orbital.py`.
     ```python
     from fastapi import APIRouter
     from app.services.calculations import orbital_mechanics
@@ -51,12 +51,22 @@ To add a new calculation features (e.g., Orbital Velocity):
         return orbital_mechanics.orbital_velocity(...)
     ```
 
-4.  **Register Router**: Import and include the new router in `app/api/v1/router.py`.
+4.  **Register Router**: Import and include the new router in `app/api/v1/routes.py`.
     ```python
-    from app.api.v1.endpoints import orbital
+    from app.api.v1.routers import orbital
     # ...
     router.include_router(orbital.router, prefix="/orbital", tags=["orbital"])
     ```
+
+### Migrating existing `endpoints/` modules
+
+If you have existing endpoint modules under `app/api/v1/endpoints/`:
+
+- Move the module file to `app/api/v1/routers/` (e.g. `health.py`).
+- Update imports in `app/api/v1/router.py` to import from `app.api.v1.routers`.
+- Optionally keep a small compatibility shim in `app/api/v1/endpoints/__init__.py` that re-exports the router while you update other imports.
+
+This repository already contains that compatibility shim so the migration is backwards-compatible.
 
 ## Code Style
 
