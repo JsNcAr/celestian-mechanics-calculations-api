@@ -40,19 +40,34 @@ designed for consumption by TypeScript frontends.
 ## Quick start
 
 ```bash
-# 1. Create a virtual environment and install dependencies
+# Recommended: use Poetry (preferred)
+# 1. Install Poetry (if not installed)
+#    Official installer: https://python-poetry.org/docs/#installation
+curl -sSL https://install.python-poetry.org | python3 -
+
+# 2. Install project dependencies and create the virtual environment
+poetry install
+
+# 3. (optional) spawn a shell that uses the Poetry venv
+poetry shell
+# or run commands with `poetry run` without entering a shell
+
+# 4. Copy and edit environment variables
+cp .env.example .env
+
+# 5. Run the development server
+poetry run python run.py
+# or
+poetry run uvicorn app.main:app --reload
+```
+
+**Fallback (pip + venv)**
+
+```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-pip install -r requirements-dev.txt   # dev / test dependencies
-
-# 2. (Optional) copy and edit environment variables
-cp .env.example .env
-
-# 3. Run the development server
-python run.py
-# or
-uvicorn app.main:app --reload
+pip install -r requirements-dev.txt
 ```
 
 The API will be available at <http://localhost:8000>.  
@@ -68,6 +83,9 @@ Interactive docs: <http://localhost:8000/docs>
 ## Running tests
 
 ```bash
+# using Poetry (recommended)
+poetry run pytest
+# or without Poetry
 pytest
 ```
 
